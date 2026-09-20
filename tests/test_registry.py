@@ -84,6 +84,8 @@ class RegistryBuildTests(unittest.TestCase):
             package = json.loads((root / "generated/v1/package/tmdb.json").read_text())
             index = json.loads((root / "generated/v1/index.json").read_text())
             audit = json.loads((root / "generated/v1/audit.json").read_text())
+            pointer = json.loads((root / "generated/v1/revision.json").read_text())
+            self.assertEqual(pointer, {"schema_version": 1, "registry_revision": revision})
             self.assertEqual(package["verified_commit"], "a" * 40)
             self.assertEqual(package["registry_revision"], "test-revision")
             self.assertEqual(index["packages"], [package])

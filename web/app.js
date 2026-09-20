@@ -1,8 +1,7 @@
-const GITHUB_RAW_BASE =
-  "https://raw.githubusercontent.com/kedi-lang/registry/main/generated/v1";
+import { createRegistryClient } from "./registry-client.mjs";
+
 const REGISTRY_REPOSITORY = "https://github.com/kedi-lang/registry";
-const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "::1"]);
-const dataBase = LOCAL_HOSTS.has(window.location.hostname) ? "/v1" : GITHUB_RAW_BASE;
+const registry = createRegistryClient();
 
 const app = document.querySelector("#app");
 
@@ -67,17 +66,7 @@ function packageRoute() {
   return /^[a-z][a-z0-9_]*$/.test(name) ? name : "";
 }
 
-async function fetchJson(path) {
-  const response = await fetch(`${dataBase}/${path}`, {
-    headers: { Accept: "application/json" },
-  });
-  if (!response.ok) {
-    const error = new Error(`Registry returned ${response.status}`);
-    error.status = response.status;
-    throw error;
-  }
-  return response.json();
-}
+const fetchJson = (path) => registry.get(path);
 
 function statusPill(status) {
   const normalized = ["active", "superseded", "yanked", "revoked"].includes(status)

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "name": "textkit",
+  "version": "0.1.0",
+  "description": "Deterministic text helpers for Kedi: normalize whitespace, count words, and create ASCII slugs. No model or API key required.",
+  "author": {
+    "name": "Kedi Programming Language",
+    "contact": "https://github.com/kedi-lang/registry/issues"
+  },
+  "repository": "https://github.com/kedi-lang/registry",
+  "verified_commit": "c1ea408935dcf23e0126fb7a711457c72e3beb0e",
+  "package_manifest_path": "library/textkit/package.kedi",
+  "status": "active",
+  "registry_manifest_digest": "sha256:6572fbda97eedf20c0d38d58df540fb296ee371452fe77738a8fd064a406dd16",
+  "registry_revision": "sha256:9ba1593e7bdee45bb20515f420f9c41647f2ffa050bf871c0a64cdc823a49bcc"
+}

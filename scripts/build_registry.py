@@ -373,7 +373,7 @@ def build_registry(root: Path, *, revision: str | None = None) -> str:
 
     records: list[dict[str, Any]] = []
     audit_entries: list[dict[str, Any]] = []
-    digests: list[str] = []
+    digests = [f"builder:{hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}"]
     sources: dict[str, str] = {}
     for package_dir in sorted(path for path in packages_root.iterdir() if path.is_dir()):
         if package_dir.is_symlink():
@@ -416,6 +416,10 @@ def build_registry(root: Path, *, revision: str | None = None) -> str:
     output_root.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="registry-v1-", dir=output_root.parent) as temporary:
         stage = Path(temporary)
+        _write_json(
+            stage / "revision.json",
+            {"schema_version": 1, "registry_revision": revision},
+        )
         _write_json(
             stage / "index.json",
             {"schema_version": 1, "registry_revision": revision, "packages": records},

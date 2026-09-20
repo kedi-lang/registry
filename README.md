@@ -16,11 +16,13 @@ packages/<name>/
   README.md           package documentation
   LICENSE             distributed license text
 generated/v1/
+  revision.json       lightweight browser cache invalidation pointer
   index.json          searchable package catalog
   audit.json          current and historical commit status
   package/<name>.json install record consumed by Kedi
   details/<name>.json rendered README and declared package metadata
 web/                   static registry interface
+library/textkit/        source of the deterministic textkit package
 ```
 
 ## Build registry data
@@ -60,6 +62,29 @@ filename. The license name links to the reviewed `LICENSE` text.
 Website details are kept in a separate endpoint so the strict v1 installation
 and audit records remain backwards compatible. If details are temporarily
 unavailable, the page still shows installation information and a README link.
+
+## Browser data and cache
+
+Both local previews and the public website read the real generated data from
+`kedi-lang/registry` on GitHub. The UI does not substitute local fixture data.
+Each page load revalidates the small `revision.json` resource. Catalog, package
+records and rendered READMEs are stored in browser `localStorage`, keyed by
+registry revision. An unchanged revision reuses them without downloading their
+content again. A changed revision removes old entries and fetches fresh data.
+This also invalidates yanked/revoked statuses, not just package version numbers.
+
+Storage failures degrade to network reads. If GitHub cannot confirm the current
+revision, the page shows a connection error instead of presenting stale active
+package records. GitHub's upstream CDN can still delay visibility of a new
+publication; the browser cache itself has no time-based retention past a
+confirmed revision change. This cache affects browsing only, not CLI verification.
+
+Tests use isolated fixtures, never production package records:
+
+```console
+python -m unittest discover -s tests -v
+node --test tests/registry-client.test.mjs
+```
 
 ## Run locally
 

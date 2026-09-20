@@ -1,5 +1,13 @@
 {
   "schema_version": 1,
-  "registry_revision": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "entries": []
+  "registry_revision": "sha256:9ba1593e7bdee45bb20515f420f9c41647f2ffa050bf871c0a64cdc823a49bcc",
+  "entries": [
+    {
+      "name": "textkit",
+      "version": "0.1.0",
+      "repository": "https://github.com/kedi-lang/registry",
+      "verified_commit": "c1ea408935dcf23e0126fb7a711457c72e3beb0e",
+      "status": "active"
+    }
+  ]
 }
