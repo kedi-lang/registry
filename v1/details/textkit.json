@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "name": "textkit",
+  "version": "0.1.0",
+  "registry_revision": "804df53af20564324c635d4aba9fdb7a7ff18df6",
+  "verified_commit": "c1ea408935dcf23e0126fb7a711457c72e3beb0e",
+  "readme_url": "https://github.com/kedi-lang/registry/blob/804df53af20564324c635d4aba9fdb7a7ff18df6/packages/textkit/README.md",
+  "readme_html": "<h2 id=\"readme-textkit\">textkit</h2>\n<p>Three deterministic text helpers for Kedi programs. No model, network request,\nAPI key, or third-party Python dependency is needed to run them.</p>\n<h3 id=\"readme-install\">Install</h3>\n<pre><code class=\"language-console\">kedi add textkit\n</code></pre>\n<h3 id=\"readme-use-in-kedi\">Use in Kedi</h3>\n<pre><code class=\"language-kedi\">&gt; import: textkit\n\n[title: str] = `&quot;  Kedi   Package Index!  &quot;`\n\n= &lt;normalize_whitespace(&lt;title&gt;)&gt; / &lt;slugify(&lt;title&gt;)&gt; / &lt;word_count(&lt;title&gt;)&gt;\n</code></pre>\n<p>Output:</p>\n<pre><code class=\"language-text\">Kedi Package Index! / kedi-package-index / 3\n</code></pre>\n<h3 id=\"readme-api\">API</h3>\n<table>\n<thead>\n<tr>\n<th>Procedure</th>\n<th>Returns</th>\n<th>Behavior</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>normalize_whitespace(value: str)</code></td>\n<td><code>str</code></td>\n<td>Trims and collapses Unicode whitespace to a single ASCII space.</td>\n</tr>\n<tr>\n<td><code>word_count(value: str)</code></td>\n<td><code>int</code></td>\n<td>Counts whitespace-separated tokens. Punctuation does not create new tokens.</td>\n</tr>\n<tr>\n<td><code>slugify(value: str)</code></td>\n<td><code>str</code></td>\n<td>Normalizes with NFKD, removes non-ASCII characters, lowercases, and joins alphanumeric runs with hyphens.</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"readme-edge-cases\">Edge cases</h3>\n<ul>\n<li>Empty and whitespace-only strings normalize to <code>&quot;&quot;</code> and contain zero words.</li>\n<li><code>slugify(&quot;Cr\u00e8me br\u00fbl\u00e9e&quot;)</code> returns <code>&quot;creme-brulee&quot;</code>.</li>\n<li>Slugs contain only <code>a-z</code>, <code>0-9</code> and internal hyphens.</li>\n<li>This is not a transliteration library. Non-Latin text may produce an empty\nslug, and names such as <code>&quot;Caf\u00e9&quot;</code> and <code>&quot;Cafe&quot;</code> produce the same result. Do not\ntreat slugs as unique identifiers.</li>\n<li><code>word_count</code> does not perform linguistic segmentation or count model tokens.</li>\n<li>All procedures require strings; no implicit conversion is performed.</li>\n</ul>\n<h3 id=\"readme-compatibility\">Compatibility</h3>\n<p>Python 3.11 through 3.13. Uses only the Python standard library.</p>\n<h3 id=\"readme-license\">License</h3>\n<p>MIT. See <a href=\"https://github.com/kedi-lang/registry/blob/804df53af20564324c635d4aba9fdb7a7ff18df6/packages/textkit/LICENSE\" rel=\"nofollow noreferrer\">LICENSE</a>.</p>\n",
+  "license": "MIT",
+  "license_url": "https://github.com/kedi-lang/registry/blob/804df53af20564324c635d4aba9fdb7a7ff18df6/packages/textkit/LICENSE",
+  "python_requirement": "python@3.11-3.13",
+  "python_classifiers": [
+    "Python 3",
+    "Python 3.11",
+    "Python 3.12",
+    "Python 3.13"
+  ],
+  "python_dependencies": [],
+  "source_directory": "src/textkit",
+  "package_manifest_url": "https://github.com/kedi-lang/registry/blob/c1ea408935dcf23e0126fb7a711457c72e3beb0e/library/textkit/package.kedi"
+}
