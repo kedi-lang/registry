@@ -1,0 +1,7 @@
+> package: textkit:
+  author: Kedi Programming Language
+  contact: https://github.com/kedi-lang/registry/issues
+  version: 0.1.0
+  source: src/textkit
+  python: python@3.11-3.13
+  license: MIT

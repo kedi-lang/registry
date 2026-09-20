@@ -1,0 +1,29 @@
+```
+import re
+import unicodedata
+```
+
+@normalize_whitespace(value: str) -> str:
+  ###
+  Trim surrounding whitespace and collapse whitespace runs to one space.
+  ###
+  = `" ".join(value.split())`
+
+@word_count(value: str) -> int:
+  ###
+  Count whitespace-separated tokens, without linguistic word segmentation.
+  ###
+  = `len(value.split())`
+
+@slugify(value: str) -> str:
+  ###
+  Create a lowercase ASCII slug. Remove accents and unsupported characters.
+  Empty or non-ASCII-only input can produce an empty string.
+  ###
+  [normalized: str] = `unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")`
+  = `re.sub(r"[^a-z0-9]+", "-", normalized.lower()).strip("-")`
+
+> export:
+  normalize_whitespace
+  word_count
+  slugify
