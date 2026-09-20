@@ -9,12 +9,6 @@ API key, or third-party Python dependency is needed to run them.
 kedi add textkit
 ```
 
-Until the registry domain is live, point the CLI at the GitHub-hosted registry:
-
-```console
-KEDI_REGISTRY_URL=https://raw.githubusercontent.com/kedi-lang/registry/main/generated kedi add textkit
-```
-
 ## Use in Kedi
 
 ```kedi

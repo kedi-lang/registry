@@ -18,10 +18,10 @@ const details = (revision) => ({ ...record(revision), readme_html: "<p>Real docu
 function server() {
   const state = { revision: "v1", resources: { "index.json": index("v1"), "package/textkit.json": record("v1"), "details/textkit.json": details("v1") }, requests: [] };
   state.fetcher = async (url, options) => {
-    const parsed = new URL(url);
-    const path = parsed.pathname.split("/generated/v1/")[1];
+    const parsed = new URL(url, "https://registry.kedi-lang.org");
+    const path = parsed.pathname.split("/v1/")[1];
     state.requests.push({ url, path, options });
-    assert.equal(parsed.origin, "https://raw.githubusercontent.com");
+    assert.equal(parsed.origin, "https://registry.kedi-lang.org");
     const data = path === "revision.json" ? { schema_version: 1, registry_revision: state.revision } : state.resources[path];
     return new Response(JSON.stringify(data ?? {}), { status: data ? 200 : 404 });
   };
@@ -36,7 +36,10 @@ test("first load caches content; next page fetches only revision", async () => {
   assert.equal(remote.requests.length, 4);
   assert.equal(remote.requests[0].options.cache, "no-cache");
   for (const request of remote.requests.slice(1)) {
-    assert.equal(new URL(request.url).searchParams.get("revision"), "v1");
+    assert.equal(
+      new URL(request.url, "https://registry.kedi-lang.org").searchParams.get("revision"),
+      "v1",
+    );
     assert.equal(request.options.cache, "no-store");
   }
   client = createRegistryClient({ fetcher: remote.fetcher, storage });

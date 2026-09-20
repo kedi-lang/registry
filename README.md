@@ -5,7 +5,7 @@ each package to the exact source commit reviewed through a pull request; the
 client never follows a repository's moving default branch.
 
 The static website is designed for `https://registry.kedi-lang.org`. Package
-pages use stable routes such as `/package/tmdb`.
+pages use stable routes such as `/package/textkit`.
 
 ## Repository layout
 
@@ -66,7 +66,7 @@ unavailable, the page still shows installation information and a README link.
 ## Browser data and cache
 
 Both local previews and the public website read the real generated data from
-`kedi-lang/registry` on GitHub. The UI does not substitute local fixture data.
+the registry's `/v1/` API. The UI does not substitute local fixture data.
 Each page load revalidates the small `revision.json` resource. Catalog, package
 records and rendered READMEs are stored in browser `localStorage`, keyed by
 registry revision. An unchanged revision reuses them without downloading their
@@ -94,6 +94,13 @@ python server.py
 
 Open `http://127.0.0.1:8767`. The local server exposes the generated API below
 `/v1/` and supports package routes without a frontend build step.
+
+## Deploy
+
+Pushes to `main` run `.github/workflows/pages.yml`. The workflow validates and
+rebuilds the registry at the pushed commit, tests the Python API and browser
+client, assembles the static website with `/v1/` data, and publishes it to
+`https://registry.kedi-lang.org` through GitHub Pages.
 
 ## Register a package
 

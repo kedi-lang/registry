@@ -1,4 +1,4 @@
-const DATA_BASE = "https://raw.githubusercontent.com/kedi-lang/registry/main/generated/v1";
+const DATA_BASE = "/v1";
 const CACHE_PREFIX = "kedi-registry:github-v1:";
 const RESOURCE_PATH = /^(index\.json|(?:package|details)\/[a-z][a-z0-9_]*\.json)$/;
 

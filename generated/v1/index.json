@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "registry_revision": "sha256:9ba1593e7bdee45bb20515f420f9c41647f2ffa050bf871c0a64cdc823a49bcc",
+  "registry_revision": "804df53af20564324c635d4aba9fdb7a7ff18df6",
   "packages": [
     {
       "schema_version": 1,
@@ -16,7 +16,7 @@
       "package_manifest_path": "library/textkit/package.kedi",
       "status": "active",
       "registry_manifest_digest": "sha256:6572fbda97eedf20c0d38d58df540fb296ee371452fe77738a8fd064a406dd16",
-      "registry_revision": "sha256:9ba1593e7bdee45bb20515f420f9c41647f2ffa050bf871c0a64cdc823a49bcc"
+      "registry_revision": "804df53af20564324c635d4aba9fdb7a7ff18df6"
     }
   ]
 }
