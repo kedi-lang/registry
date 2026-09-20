@@ -4,8 +4,11 @@
 from __future__ import annotations
 
 import argparse
+import re
 import shutil
 from pathlib import Path
+
+_PACKAGE_NAME = re.compile(r"^[a-z][a-z0-9_]*$")
 
 
 def build_site(root: Path, output: Path) -> None:
@@ -25,6 +28,13 @@ def build_site(root: Path, output: Path) -> None:
         shutil.rmtree(output)
     shutil.copytree(web, output)
     shutil.copytree(api, output / "v1")
+    for package_record in sorted((api / "package").glob("*.json")):
+        package_name = package_record.stem
+        if not _PACKAGE_NAME.fullmatch(package_name):
+            raise ValueError(f"Invalid generated package name: {package_name}")
+        route = output / "package" / package_name
+        route.mkdir(parents=True)
+        shutil.copy2(web / "index.html", route / "index.html")
 
 
 def main() -> None:

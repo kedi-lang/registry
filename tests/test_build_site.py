@@ -29,6 +29,22 @@ class BuildSiteTests(unittest.TestCase):
             self.assertEqual((output / "404.html").read_text(), "fallback")
             self.assertTrue((output / "v1/revision.json").is_file())
             self.assertTrue((output / "v1/package/textkit.json").is_file())
+            self.assertEqual(
+                (output / "package/textkit/index.html").read_text(),
+                "registry",
+            )
+
+    def test_rejects_unsafe_generated_package_routes(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "registry"
+            (root / "web").mkdir(parents=True)
+            (root / "generated/v1/package").mkdir(parents=True)
+            (root / "web/index.html").write_text("registry")
+            (root / "generated/v1/revision.json").write_text("{}")
+            (root / "generated/v1/package/Bad.json").write_text("{}")
+
+            with self.assertRaisesRegex(ValueError, "Invalid generated package name"):
+                build_site(root, root / "site")
 
     def test_rejects_output_that_contains_repository(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
