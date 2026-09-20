@@ -97,10 +97,12 @@ Open `http://127.0.0.1:8767`. The local server exposes the generated API below
 
 ## Deploy
 
-Pushes to `main` run `.github/workflows/pages.yml`. The workflow validates and
-rebuilds the registry at the pushed commit, tests the Python API and browser
-client, assembles the static website with `/v1/` data, and publishes it to
-`https://registry.kedi-lang.org` through GitHub Pages.
+Pushes to `main` run `.github/workflows/pages.yml`. The workflow verifies the
+committed registry snapshot, tests the publication builder and browser client,
+assembles the static website with `/v1/` data, and publishes it to
+`https://registry.kedi-lang.org` through GitHub Pages. Maintainers rebuild and
+fully validate the snapshot locally before committing it, using the commands
+above and the Kedi version pinned in `requirements-build.txt`.
 
 ## Register a package
 
