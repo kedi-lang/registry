@@ -349,7 +349,7 @@ function renderPackage(record, details = null) {
         </section>
         <section class="rail-section" aria-label="Python dependencies">
           <h2 class="rail-heading">Python dependencies</h2>
-          ${dependencies.length ? `<ul class="dependency-list">${dependencies.map((item) => `<li><code>${escapeHtml(item)}</code></li>`).join("")}</ul>` : `<p class="metadata-note">${notDeclared}</p>`}
+          ${dependencies.length ? `<ul class="dependency-list">${dependencies.map((item) => `<li><code>${escapeHtml(item)}</code></li>`).join("")}</ul>` : `<p class="metadata-note">${details ? "None" : "Unavailable"}</p>`}
         </section>
         <details class="provenance"><summary>Registry provenance</summary><dl class="metadata">
           ${metadataLink("Registry revision", record.registry_revision, null)}

@@ -236,7 +236,7 @@ main { min-height: calc(100vh - 238px); }
 .readme-content li { margin: 5px 0; }
 .readme-content img { max-width: 100%; height: auto; }
 .readme-content table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; margin: 18px 0; font-size: 12px; }
-.readme-content th, .readme-content td { border: 1px solid var(--line); padding: 10px 14px; text-align: left; }
+.readme-content th, .readme-content td { border: 1px solid var(--line); padding: 10px 14px; text-align: left; overflow-wrap: normal; }
 .readme-content th { background: var(--surface); }
 .readme-content td code { white-space: nowrap; }
 .readme-content hr { border: 0; border-top: 1px solid var(--line); margin: 24px 0; }
