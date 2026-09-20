@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://registry.kedi-lang.org/schemas/package-manifest-v1.schema.json",
+  "title": "Kedi registry package manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "name",
+    "version",
+    "description",
+    "author",
+    "repository",
+    "verified_commit",
+    "package_manifest_path",
+    "status"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "name": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$", "maxLength": 64 },
+    "version": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "description": { "type": "string", "minLength": 1, "maxLength": 240 },
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "contact"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "contact": { "type": "string", "minLength": 1, "maxLength": 254 }
+      }
+    },
+    "repository": { "type": "string", "format": "uri", "pattern": "^https://" },
+    "verified_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "package_manifest_path": {
+      "type": "string",
+      "pattern": "^(?:[a-zA-Z0-9._-]+/)*package\\.kedi$",
+      "maxLength": 512
+    },
+    "status": { "enum": ["active", "yanked", "revoked"] }
+  }
+}
