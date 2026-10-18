@@ -1,0 +1,9 @@
+> package: logfire:
+  author: Kedi Programming Language
+  contact: https://github.com/kedi-lang/registry/issues
+  version: 0.1.0
+  source: src/logfire
+  python: python@3.11-3.14
+  license: MIT
+  python_dependencies:
+    logfire[httpx]>=4.41,<5

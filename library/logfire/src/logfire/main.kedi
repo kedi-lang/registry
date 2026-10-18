@@ -1,0 +1,27 @@
+```
+import logfire as _logfire
+```
+
+@configure_logfire(service_name: str = `"kedi"`, capture_content: bool = `False`, httpx: bool = `False`) -> None:
+  ###
+  Configure Logfire and Pydantic AI tracing. Send to Logfire when a token is
+  available. Optionally include model content or instrument HTTPX requests.
+  ###
+  = ```
+  _logfire.configure(service_name=service_name, send_to_logfire="if-token-present")
+  _logfire.instrument_pydantic_ai(include_content=capture_content)
+  if httpx:
+      _logfire.instrument_httpx()
+  return None
+  ```
+
+@flush_logfire() -> bool:
+  ###
+  Wait up to three seconds for pending telemetry to be exported.
+  Return whether the flush completed within that deadline.
+  ###
+  = `_logfire.force_flush()`
+
+> export:
+  configure_logfire
+  flush_logfire
