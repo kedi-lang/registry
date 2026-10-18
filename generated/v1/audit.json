@@ -1,7 +1,14 @@
 {
   "schema_version": 1,
-  "registry_revision": "804df53af20564324c635d4aba9fdb7a7ff18df6",
+  "registry_revision": "sha256:1c8cad05979be195ec67a68e03e5cb0edb360aaaa60bd4312d2dc87482beb25d",
   "entries": [
+    {
+      "name": "logfire",
+      "version": "0.1.0",
+      "repository": "https://github.com/kedi-lang/registry",
+      "verified_commit": "10bd3fa6329308457a5d473edb89d01739c6b52b",
+      "status": "active"
+    },
     {
       "name": "textkit",
       "version": "0.1.0",

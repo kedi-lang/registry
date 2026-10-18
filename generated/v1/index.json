@@ -1,7 +1,23 @@
 {
   "schema_version": 1,
-  "registry_revision": "804df53af20564324c635d4aba9fdb7a7ff18df6",
+  "registry_revision": "sha256:1c8cad05979be195ec67a68e03e5cb0edb360aaaa60bd4312d2dc87482beb25d",
   "packages": [
+    {
+      "schema_version": 1,
+      "name": "logfire",
+      "version": "0.1.0",
+      "description": "Logfire tracing for Kedi programs: Pydantic AI model and tool spans, optional HTTPX instrumentation, and explicit telemetry flushing.",
+      "author": {
+        "name": "Kedi Programming Language",
+        "contact": "https://github.com/kedi-lang/registry/issues"
+      },
+      "repository": "https://github.com/kedi-lang/registry",
+      "verified_commit": "10bd3fa6329308457a5d473edb89d01739c6b52b",
+      "package_manifest_path": "library/logfire/package.kedi",
+      "status": "active",
+      "registry_manifest_digest": "sha256:139467fa98baae2be340d5d17bf55977125e9b2214eabbcace12e9d088abcbf7",
+      "registry_revision": "sha256:1c8cad05979be195ec67a68e03e5cb0edb360aaaa60bd4312d2dc87482beb25d"
+    },
     {
       "schema_version": 1,
       "name": "textkit",
@@ -16,7 +32,7 @@
       "package_manifest_path": "library/textkit/package.kedi",
       "status": "active",
       "registry_manifest_digest": "sha256:6572fbda97eedf20c0d38d58df540fb296ee371452fe77738a8fd064a406dd16",
-      "registry_revision": "804df53af20564324c635d4aba9fdb7a7ff18df6"
+      "registry_revision": "sha256:1c8cad05979be195ec67a68e03e5cb0edb360aaaa60bd4312d2dc87482beb25d"
     }
   ]
 }
