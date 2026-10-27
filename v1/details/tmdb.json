@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "name": "tmdb",
+  "version": "0.1.0",
+  "registry_revision": "sha256:67f0df7525780fc275af50aa1867789a77104850c2c7223fd94812fcc596ff81",
+  "verified_commit": "887b28bed4f0052f2d25eac8accee152bcb37ba6",
+  "readme_url": "https://github.com/kedi-lang/registry/blob/main/packages/tmdb/README.md",
+  "readme_html": "<h2 id=\"readme-tmdb-for-kedi\">TMDB for Kedi</h2>\n<p>Find a film by title and retrieve its director, release date, and runtime using\nTMDB's API. No movie IDs or MCP server configuration are needed.</p>\n<h3 id=\"readme-install\">Install</h3>\n<pre><code class=\"language-console\">kedi add tmdb\n</code></pre>\n<p>Kedi installs <code>httpx&gt;=0.27,&lt;1</code> into the Python environment running the command.\nUse Python 3.11-3.14 and a Kedi version with automatic Python dependency installation.</p>\n<h3 id=\"readme-credentials\">Credentials</h3>\n<p>Set <code>TMDB_API_KEY</code> to your TMDB <strong>API Read Access Token</strong>, not the shorter API key.\nThe tool sends the token as a Bearer header. Obtain a token from your\n<a href=\"https://www.themoviedb.org/settings/api\" rel=\"nofollow noreferrer\">TMDB API settings</a>.</p>\n<p>For example, put this in a local <code>.env</code> beside your program when using the Kedi CLI:</p>\n<pre><code class=\"language-dotenv\">TMDB_API_KEY=your-tmdb-read-access-token\n</code></pre>\n<h3 id=\"readme-use-from-a-model\">Use from a model</h3>\n<pre><code class=\"language-kedi\">&gt; import: tmdb\n&gt; approval: allow\n&gt; use: movie_details\n\n&gt;&gt; Look up Spirited Away using movie_details. Its director is [director: str], release year [year: int], and runtime [minutes: int] minutes.\n\n= `{&quot;director&quot;: director, &quot;year&quot;: year, &quot;minutes&quot;: minutes}`\n</code></pre>\n<p>Configure your generative model and its credentials separately. For example:</p>\n<pre><code class=\"language-console\">kedi movie_night.kedi --adapter-model google/gemini-3-flash-preview\n</code></pre>\n<p>The Google model requires <code>GOOGLE_API_KEY</code> and the <code>pydantic-ai-slim[google]</code>\nprovider dependency. The package itself makes no model calls.</p>\n<h3 id=\"readme-call-directly\">Call directly</h3>\n<pre><code class=\"language-kedi\">&gt; import: tmdb\n\n= `movie_details(&quot;Dune&quot;, 1984)`\n</code></pre>\n<p><code>movie_details(title: str, year: int = 0) -&gt; dict</code> returns:</p>\n<pre><code class=\"language-json\">{\n  &quot;title&quot;: &quot;Dune&quot;,\n  &quot;release_date&quot;: &quot;1984-12-14&quot;,\n  &quot;runtime&quot;: 137,\n  &quot;directors&quot;: [&quot;David Lynch&quot;]\n}\n</code></pre>\n<p>A call searches for the title and then requests the matching movie's details and\ncredits. Exact title matches are preferred; the tool rejects missing or ambiguous\nresults rather than picking an arbitrary movie. Supply a release year to\ndistinguish remakes. Each HTTP request has a 10-second timeout. HTTP errors,\nrate limits, invalid responses, and timeouts propagate to the caller.</p>\n<p>The wrapper is MIT licensed. TMDB data and API access are subject to\n<a href=\"https://www.themoviedb.org/terms-of-use\" rel=\"nofollow noreferrer\">TMDB's terms</a>. This product uses the\nTMDB API but is not endorsed or certified by TMDB.</p>\n",
+  "license": "MIT",
+  "license_url": "https://github.com/kedi-lang/registry/blob/main/packages/tmdb/LICENSE",
+  "python_requirement": "python@3.11-3.14",
+  "python_classifiers": [
+    "Python 3",
+    "Python 3.11",
+    "Python 3.12",
+    "Python 3.13",
+    "Python 3.14"
+  ],
+  "python_dependencies": [
+    "httpx>=0.27,<1"
+  ],
+  "source_directory": "src/tmdb",
+  "package_manifest_url": "https://github.com/kedi-lang/registry/blob/887b28bed4f0052f2d25eac8accee152bcb37ba6/library/tmdb/package.kedi"
+}

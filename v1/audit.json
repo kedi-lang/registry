@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "registry_revision": "sha256:67f0df7525780fc275af50aa1867789a77104850c2c7223fd94812fcc596ff81",
+  "entries": [
+    {
+      "name": "logfire",
+      "version": "0.1.0",
+      "repository": "https://github.com/kedi-lang/registry",
+      "verified_commit": "10bd3fa6329308457a5d473edb89d01739c6b52b",
+      "status": "active"
+    },
+    {
+      "name": "tmdb",
+      "version": "0.1.0",
+      "repository": "https://github.com/kedi-lang/registry",
+      "verified_commit": "887b28bed4f0052f2d25eac8accee152bcb37ba6",
+      "status": "active"
+    }
+  ]
+}
