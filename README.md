@@ -5,7 +5,7 @@ each package to the exact source commit reviewed through a pull request; the
 client never follows a repository's moving default branch.
 
 The static website is designed for `https://registry.kedi-lang.org`. Package
-pages use stable routes such as `/package/textkit`.
+pages use stable routes such as `/package/tmdb`.
 
 ## Repository layout
 
@@ -22,7 +22,8 @@ generated/v1/
   package/<name>.json install record consumed by Kedi
   details/<name>.json rendered README and declared package metadata
 web/                   static registry interface
-library/textkit/        source of the deterministic textkit package
+library/logfire/        Logfire tracing integration
+library/tmdb/           title-based TMDB movie lookup with HTTPX
 ```
 
 ## Build registry data

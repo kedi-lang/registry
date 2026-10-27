@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "name": "tmdb",
+  "version": "0.1.0",
+  "description": "Search films by title and retrieve directors, release dates, and runtimes from TMDB. Includes optional release-year disambiguation and automatic HTTPX installation.",
+  "author": {
+    "name": "Kedi Programming Language",
+    "contact": "https://github.com/kedi-lang/registry/issues"
+  },
+  "repository": "https://github.com/kedi-lang/registry",
+  "verified_commit": "887b28bed4f0052f2d25eac8accee152bcb37ba6",
+  "package_manifest_path": "library/tmdb/package.kedi",
+  "status": "active"
+}
