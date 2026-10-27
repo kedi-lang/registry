@@ -1,0 +1,51 @@
+```
+import os
+import httpx
+```
+
+@movie_details(title: str, year: int = `0`) -> dict:
+  ###
+  Search TMDB by movie title and optional release year. Return title, release_date,
+  runtime in minutes, and directors. Supply a year when the title is ambiguous.
+  ###
+  = ```
+  query = title.strip()
+  if not query:
+      raise ValueError("Supply a movie title.")
+  params = {"query": query}
+  if year:
+      params["primary_release_year"] = str(year)
+  with httpx.Client(
+      base_url="https://api.themoviedb.org/3/",
+      headers={"Authorization": f"Bearer {os.environ['TMDB_API_KEY']}"},
+      timeout=10.0,
+  ) as client:
+      response = client.get("search/movie", params=params)
+      response.raise_for_status()
+      search = response.json()
+      results = search["results"]
+      if not results:
+          raise ValueError(f"No movie found for {query!r}. Check the title or year.")
+      exact = [movie for movie in results if query.casefold() in (
+          movie.get("title", "").casefold(), movie.get("original_title", "").casefold()
+      )]
+      matches = exact or results
+      if len(matches) != 1 or search.get("total_pages", 1) > 1:
+          choices = [{"title": movie["title"], "release_date": movie.get("release_date")}
+                     for movie in matches[:5]]
+          raise ValueError(f"Ambiguous title. Supply a year or a more specific title: {choices}")
+      movie_id = matches[0]["id"]
+      response = client.get(f"movie/{movie_id}", params={"append_to_response": "credits"})
+      response.raise_for_status()
+      movie = response.json()
+  return {
+      "title": movie["title"],
+      "release_date": movie["release_date"],
+      "runtime": movie["runtime"],
+      "directors": [person["name"] for person in movie["credits"]["crew"]
+                    if person["job"] == "Director"],
+  }
+  ```
+
+> export:
+  movie_details
